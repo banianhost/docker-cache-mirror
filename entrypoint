@@ -2,7 +2,7 @@
 set -e
 
 if test -z $MAX_CLIENT_CONNECTED; then
-   sed -i '/limit_conn/d' /etc/nginx/conf.d/default.conf.template;
+   sed -i '/limit_conn/d' /etc/nginx/conf.d/default.tmpl;
 fi 
 
 envsubst < /etc/nginx/conf.d/default.tmpl > /etc/nginx/conf.d/default.conf 
