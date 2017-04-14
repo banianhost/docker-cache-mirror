@@ -1,18 +1,35 @@
-proxy_cache_path /var/cache/mirror levels=1:2 keys_zone=cache_mirror:100m max_size=$MAX_CACHE_SIZE use_temp_path=off;
+# http://nginx.org/en/docs/http/ngx_http_proxy_module.html
+
+proxy_cache_path /var/cache/mirror levels=1:2 keys_zone=cache_mirror:100m
+                                   max_size=$MAX_CACHE_SIZE use_temp_path=off;
+
 limit_conn_zone $server_name zone=perserver:10m;
 
 server {
   location / {
     limit_conn perserver     $MAX_CLIENT_CONNECTED;
+    
     proxy_max_temp_file_size 0;
+    
     proxy_pass               $REMOTE_PROTOCOLE://$REMOTE_HOST;
+    
     proxy_cache_lock         on;
+    
     proxy_cache_revalidate   on;
+    
     proxy_cache_lock_timeout $CACHE_LOCK_TIMEOUT;
+    
     proxy_ignore_headers     Cache-Control;
+    
     proxy_cache_valid        any $CACHE_TTL;
+    
     proxy_set_header         Host $REMOTE_HOST;
+    
     proxy_cache              cache_mirror;
-    proxy_cache_use_stale    error timeout invalid_header updating http_500 http_502 http_503 http_504;
+	
+    proxy_cache_use_stale    error timeout invalid_header updating
+                             http_500 http_502 http_503 http_504;
+							 
+	add_header X-Cache $upstream_cache_status;
   }
 }

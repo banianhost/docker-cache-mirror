@@ -28,3 +28,7 @@ docker run -it -p 8080:80 \
     banian/cache-mirror:latest
 ```
 
+# License
+MIT
+
+Originally started as a fork of digitalLumberjack/docker-nginx-https-cache
