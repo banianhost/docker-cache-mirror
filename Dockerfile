@@ -6,6 +6,7 @@ ENV CACHE_TTL '5m'
 ENV MAX_CACHE_SIZE '10g'
 ENV MAX_CLIENT_CONNECTED ''
 ENV CACHE_LOCK_TIMEOUT '10s'
+ENV server_name '$server_name'
 
 RUN sed -i "s/\"\$http_x_forwarded_for\"';/\"\$http_x_forwarded_for\" \$request_time';/g" /etc/nginx/nginx.conf
 
