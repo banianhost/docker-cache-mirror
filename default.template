@@ -28,12 +28,15 @@ server {
     # Sets the protocol and address of a proxied server and an optional URI to which a location should be mapped
     proxy_pass               $REMOTE_PROTOCOLE://$REMOTE_HOST;
     
-	# Rewrite response URLS using sub module
-	sub_filter '$REMOTE_HOST' '$REWRITE_URL';
+    # Rewrite response URLS using sub module
+    sub_filter '$REMOTE_HOST' '$REWRITE_URL';
 	
-	# Preserve the "Last-Modified" header field from the original response
-	sub_filter_last_modified on;
-	
+    # Preserve the "Last-Modified" header field from the original response
+    sub_filter_last_modified on;
+    
+    # Enables string replacement in responses with the specified MIME types
+    sub_filter_types text/html application/json application/xml text/json
+
     # Only one request at a time will be allowed to populate a new cache element 
     proxy_cache_lock         on;
     
@@ -60,6 +63,7 @@ server {
     proxy_cache_use_stale    error timeout invalid_header updating
                              http_500 http_502 http_503 http_504;
     
+    # Misc
     proxy_http_version 1.1;
     proxy_pass_request_headers off;
 	
