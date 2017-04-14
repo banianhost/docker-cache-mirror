@@ -26,6 +26,12 @@ server {
     # Sets the protocol and address of a proxied server and an optional URI to which a location should be mapped
     proxy_pass               $REMOTE_PROTOCOLE://$REMOTE_HOST;
     
+	# Rewrite response URLS using sub module
+	sub_filter '$REMOTE_HOST' '$REWRITE_URL';
+	
+	# Preserve the "Last-Modified" header field from the original response
+	sub_filter_last_modified on;
+	
     # Only one request at a time will be allowed to populate a new cache element 
     proxy_cache_lock         on;
     

@@ -1,9 +1,13 @@
 #!/bin/sh 
 set -e
 
-if test -z $MAX_CLIENT_CONNECTED; then
+if [ -z $MAX_CLIENT_CONNECTED ] ; then
    sed -i '/limit_conn/d' /etc/nginx/default.template;
 fi 
+
+if [ -z $REWRITE_URL ] ; then
+   sed -i '/sub_filter/d' /etc/nginx/default.template;
+fi
 
 envsubst < /etc/nginx/default.template > /etc/nginx/sites-enabled/default
 
