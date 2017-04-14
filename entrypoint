@@ -1,0 +1,12 @@
+#!/bin/sh 
+set -e
+
+if test -z $MAX_CLIENT_CONNECTED; then
+   sed -i '/limit_conn/d' /etc/nginx/conf.d/default.conf.template;
+fi 
+
+envsubst '\$REMOTE_PROTOCOLE \$REMOTE_HOST \$CACHE_TTL \$MAX_CACHE_SIZE \$MAX_CLIENT_CONNECTED \$CACHE_LOCK_TIMEOUT'
+    < /etc/nginx/conf.d/default.tmpl
+    > /etc/nginx/conf.d/default.conf 
+
+nginx -g 'daemon off;'
