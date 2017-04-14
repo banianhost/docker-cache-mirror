@@ -2,11 +2,11 @@
 set -e
 
 if test -z $MAX_CLIENT_CONNECTED; then
-   sed -i '/limit_conn/d' /etc/nginx/conf.d/default.tmpl;
+   sed -i '/limit_conn/d' /etc/nginx/default.template;
 fi 
 
-envsubst < /etc/nginx/conf.d/default.tmpl > /etc/nginx/conf.d/default.conf 
+envsubst < /etc/nginx/default.template > /etc/nginx/sites-enabled/default
 
-echo "Starting nginx..."
+echo "Starting Nginx"
 
 nginx -g 'daemon off;'

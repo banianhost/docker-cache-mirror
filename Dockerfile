@@ -1,9 +1,7 @@
-FROM nginx
+FROM banian/nginx-extras
 
 VOLUME /var/cache/mirror
 CMD entrypoint
-
-RUN sed -i "s/\"\$http_x_forwarded_for\"';/\"\$http_x_forwarded_for\" \$request_time';/g" /etc/nginx/nginx.conf
 
 ENV server_name '$server_name'
 ENV upstream_cache_status '$upstream_cache_status'
@@ -15,5 +13,5 @@ ENV MAX_CLIENT_CONNECTED ''
 ENV CACHE_LOCK_TIMEOUT '10s'
 ENV CACHE_INACTIVE '3M'
 
-COPY default.tmpl /etc/nginx/conf.d
+COPY default.template /etc/nginx
 COPY entrypoint /bin
