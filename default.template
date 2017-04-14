@@ -30,6 +30,9 @@ server {
     
     # Rewrite response URLS using sub module
     sub_filter '$REMOTE_HOST' '$REWRITE_URL';
+    
+    # Rewrite all occurrences
+    sub_filter_once off;
 	
     # Preserve the "Last-Modified" header field from the original response
     sub_filter_last_modified on;
