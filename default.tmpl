@@ -13,11 +13,6 @@ limit_conn_zone $server_name zone=perserver:10m;
 # Disable Access Log
 access_log off;
 
-# Performance
-sendfile on;
-tcp_nodelay on;
-tcp_nopush off;
-
 server {
   location / {
     # Limit maximum connections by client
