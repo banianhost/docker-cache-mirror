@@ -38,7 +38,7 @@ server {
     sub_filter_last_modified on;
     
     # Enables string replacement in responses with the specified MIME types
-    sub_filter_types text/html application/json application/xml text/json
+    sub_filter_types application/json application/xml text/json
 
     # Only one request at a time will be allowed to populate a new cache element 
     proxy_cache_lock         on;
