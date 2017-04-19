@@ -9,6 +9,10 @@ if [ -z $REWRITE_URL ] ; then
    sed -i '/sub_filter/d' /etc/nginx/default.template;
 fi
 
+if [ -z $REWRITE_HOST ] ; then
+   export REWRITE_HOST=$REMOTE_HOST;
+fi
+
 envsubst < /etc/nginx/default.template > /etc/nginx/sites-enabled/default
 
 echo "Starting Nginx"

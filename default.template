@@ -29,7 +29,7 @@ server {
     proxy_pass               $REMOTE_PROTOCOLE://$REMOTE_HOST;
     
     # Rewrite response URLS using sub module
-    sub_filter '$REMOTE_HOST' '$REWRITE_URL';
+    sub_filter '$REWRITE_HOST' '$REWRITE_URL';
     
     # Rewrite all occurrences
     sub_filter_once off;

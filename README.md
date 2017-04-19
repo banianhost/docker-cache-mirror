@@ -4,17 +4,17 @@ A proxy cache nginx that forces the cache of resources and make conditional get 
 
 ### Environment variables
 
-Variable                  | Default  | Description
---------------------------|----------|---------------
-REMOTE_PROTOCOLE          | https    | Remote protocol
-REMOTE_HOST               | -        | IP or fqdn of the remote
-CACHE_TTL                 | 5m       | Time to live for cached resources. Remember that invalidated cache only leads to a conditonal GET request based on If-Modified-Since header
-MAX_CACHE_SIZE            | 10g      | 
-MAX_CLIENT_CONNECTED      | ∞        | Limit the number of concurent connections. Return 503 to new clients if reached
-CACHE_LOCK_TIMEOUT        | 10s      | Lock a ressource being cached in order to avoid multiple downloads
-CACHE_INACTIVE            | 3M       | Cached data that are not accessed during the time specified by the inactive parameter get removed from the cache regardless of their freshness. (defaults to 3 month)
-REWRITE_URL				  | -        | Rewrites `$REMOTE_HOST` value in responses with `$REWRITE_URL` without changing Last-Modified
-
+Variable                  | Default    | Description
+--------------------------|------------|---------------
+REMOTE_PROTOCOLE          | https      | Remote protocol
+REMOTE_HOST               | -          | IP or fqdn of the remote
+CACHE_TTL                 | 5m         | Time to live for cached resources. Remember that invalidated cache only leads to a conditonal GET request based on If-Modified-Since header
+MAX_CACHE_SIZE            | 10g        | 
+MAX_CLIENT_CONNECTED      | ∞          | Limit the number of concurent connections. Return 503 to new clients if reached
+CACHE_LOCK_TIMEOUT        | 10s        | Lock a ressource being cached in order to avoid multiple downloads
+CACHE_INACTIVE            | 3M         | Cached data that are not accessed during the time specified by the inactive parameter get removed from the cache regardless of their freshness. (defaults to 3 month)
+REWRITE_URL				  | -          | Rewrites `$REWRITE_HOST` value in responses with `$REWRITE_URL` without changing Last-Modified
+REWRITE_HOST			  |$REMOTE_HOST| 
 
 ### Simple Usage
 
