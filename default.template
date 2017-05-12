@@ -59,6 +59,9 @@ server {
     # Append REMOTE_HOST Header
     proxy_set_header         Host $REMOTE_HOST;
     
+    # Pass User-Agent Header
+    proxy_set_header         User-Agent $http_user_agent;
+    
     # Enable cache
     proxy_cache              cache_mirror;
     
