@@ -62,6 +62,9 @@ server {
     # Pass User-Agent Header
     proxy_set_header         User-Agent $http_user_agent;
     
+    # Force using SNI
+    proxy_ssl_server_name on;
+    
     # Enable cache
     proxy_cache              cache_mirror;
     
