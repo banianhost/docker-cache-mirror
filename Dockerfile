@@ -5,6 +5,7 @@ CMD entrypoint
 
 ENV server_name '$server_name'
 ENV upstream_cache_status '$upstream_cache_status'
+ENV http_user_agent '$http_user_agent'
 ENV REMOTE_PROTOCOLE 'https'
 ENV REMOTE_HOST ''
 ENV CACHE_TTL '5m'
