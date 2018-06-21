@@ -14,8 +14,8 @@ ENV server_name='$server_name' \
     CACHE_LOCK_TIMEOUT='10s' \
     CACHE_INACTIVE='3M'
 
-RUN ln -fs /dev/stderr /varl/log/nginx/error.log && \
-    ln -fs /dev/stdout /varl/log/nginx/access.log
+RUN ln -fs /dev/stderr /var/log/nginx/error.log && \
+    ln -fs /dev/stdout /var/log/nginx/access.log
 
 COPY default.template /etc/nginx
 COPY entrypoint /bin
