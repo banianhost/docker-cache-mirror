@@ -6,7 +6,7 @@ A proxy cache nginx that forces the cache of resources and make conditional get 
 
 Variable                  | Default    | Description
 --------------------------|------------|---------------
-REMOTE_PROTOCOLE          | https      | Remote protocol
+REMOTE_PROTO              | https      | Remote protocol
 REMOTE_HOST               | -          | IP or fqdn of the remote
 CACHE_TTL                 | 5m         | Time to live for cached resources. Remember that invalidated cache only leads to a conditonal GET request based on If-Modified-Since header
 MAX_CACHE_SIZE            | 10g        | 
@@ -20,7 +20,7 @@ REWRITE_HOST			  |$REMOTE_HOST|
 
 ```bash
 docker run -it -p 8080:80 \
-    -e "REMOTE_PROTOCOLE=https" \
+    -e "REMOTE_PROTO=http" \
     -e "REMOTE_HOST=registry.npmjs.org" \
     -e "CACHE_TTL=1h" \
     -e "MAX_CLIENT_CONNECTED=500" \

@@ -6,7 +6,7 @@ CMD entrypoint
 ENV server_name='$server_name' \
     upstream_cache_status='$upstream_cache_status' \
     http_user_agent='$http_user_agent' \
-    REMOTE_PROTOCOLE='https' \
+    REMOTE_PROTO='https' \
     REMOTE_HOST='' \
     CACHE_TTL='5m' \
     MAX_CACHE_SIZE='10g' \

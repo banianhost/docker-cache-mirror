@@ -26,7 +26,7 @@ server {
     proxy_max_temp_file_size 0;
     
     # Sets the protocol and address of a proxied server and an optional URI to which a location should be mapped
-    proxy_pass               $REMOTE_PROTOCOLE://$REMOTE_HOST;
+    proxy_pass               $REMOTE_PROTO://$REMOTE_HOST;
     
     # Rewrite response URLS using sub module
     sub_filter '$REWRITE_HOST' '$REWRITE_URL';
