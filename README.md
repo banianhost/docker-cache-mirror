@@ -23,6 +23,7 @@ CACHE_INACTIVE            | 3M         | Cached data that are not accessed durin
 REWRITE_URL				  | -          | Rewrites `$REWRITE_HOST` value in responses with `$REWRITE_URL` without changing Last-Modified
 REWRITE_HOST			  |$REMOTE_HOST|
 MODE                      | cache      | Can be either `cache` or `store`. Store is better for permanent caching.
+SLICE_SIZE                | 10m        | Sets the size of the slice. The zero value disables splitting responses into slices. Note that a too low value may result in excessive memory usage and opening a large number of files.
 
 ## Simple Usage
 
@@ -43,8 +44,11 @@ Use `./dev.sh` script.
 
 ## References
 
+- https://www.nginx.com/blog/nginx-caching-guide
+- https://docs.nginx.com/nginx/admin-guide/content-cache/content-caching
 - http://nginx.org/en/docs/http/ngx_http_proxy_module.html
-- https://github.com/digitalLumberjack/docker-nginx-https-cache (Fork)
+- https://nginx.org/en/docs/http/ngx_http_slice_module.html
+- https://github.com/digitalLumberjack/docker-nginx-https-cache
 - https://gist.github.com/dctrwatson/5785675
 - https://github.com/btford/npm-nginx-cache/blob/master/nginx.template.conf
 
