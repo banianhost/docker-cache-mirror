@@ -24,6 +24,7 @@ REWRITE_URL				  | -          | Rewrites `$REWRITE_HOST` value in responses with
 REWRITE_HOST			  |$REMOTE_HOST|
 MODE                      | cache      | Can be either `cache` or `store`. Store is better for permanent caching.
 SLICE_SIZE                | 10m        | Sets the size of the slice. The zero value disables splitting responses into slices. Note that a too low value may result in excessive memory usage and opening a large number of files.
+LOG_MODE                  | std        | Possible values: `std`, `persist` and `disabled`
 
 ## Simple Usage
 

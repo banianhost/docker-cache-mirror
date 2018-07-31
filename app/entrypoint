@@ -15,6 +15,7 @@ apply_default SLICE_SIZE '10m'
 apply_default MAX_CLIENT_CONNECTED ''
 apply_default REWRITE_HOST $REMOTE_HOST
 apply_default MODE 'cache'
+apply_default LOG_MODE 'std'
 
 # Preserve nginx variables
 for key in \
@@ -23,6 +24,25 @@ for key in \
 ; do
   export $key=\$$key
 done
+
+# Ensure logs directory exists
+mkdir -p /data/logs
+
+# Log mode
+case $LOG_MODE in
+  persist)
+    touch /data/logs/access.log
+    touch /data/logs/error.log
+  ;;
+  std)
+    ln -fs /dev/stdout /data/logs/access.log
+    ln -fs /dev/stderr /data/logs/error.log
+  ;;
+  disabled)
+    ln -fs /dev/null /data/logs/access.log
+    ln -fs /dev/null /data/logs/error.log
+  ;;
+esac
 
 generateTemplate() {
   template=$1
