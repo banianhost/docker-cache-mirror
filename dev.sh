@@ -8,7 +8,6 @@ docker run -it --rm \
     -v "`pwd`/data:/data" \
     -e "REMOTE_PROTO=https" \
     -e "REMOTE_HOST=npm.taobao.org" \
-    -e "REMOTE_PROTO=https" \
-    -e "REWRITE_HOST=localhost" \
+    -e "REWRITE_HOST=localhost:8080" \
     -e "REWRITE_PROTO=http" \
     banian/cache-mirror
