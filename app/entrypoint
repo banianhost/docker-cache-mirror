@@ -7,13 +7,17 @@ apply_default () { export $1=${!1:-"$2"}; }
 apply_default REMOTE_PROTO 'https'
 apply_default REMOTE_HOST ''
 apply_default REMOTE_URI ''
+
+apply_default REWRITE_HOST ''
+
 apply_default MAX_CACHE_SIZE '10g'
 apply_default CACHE_LOCK_TIMEOUT '10s'
 apply_default CACHE_TTL '3M'
 apply_default CACHE_INACTIVE '3M'
 apply_default SLICE_SIZE '10m'
+
 apply_default MAX_CLIENT_CONNECTED ''
-apply_default REWRITE_HOST $REMOTE_HOST
+
 apply_default MODE 'cache'
 apply_default LOG_MODE 'std'
 
@@ -52,7 +56,7 @@ generateTemplate() {
     sed -i '/limit_conn/d' $template;
   fi
 
-  if [ -z $REWRITE_URL ] ; then
+  if [ -z $REWRITE_HOST ] ; then
     sed -i '/sub_filter/d' $template;
   fi
 
