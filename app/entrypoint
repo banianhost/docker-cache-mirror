@@ -4,11 +4,12 @@ set -e
 # Defaults
 apply_default () { export $1=${!1:-"$2"}; }
 
-apply_default REMOTE_PROTO 'https'
+apply_default REMOTE_PROTO 'http'
 apply_default REMOTE_HOST ''
 apply_default REMOTE_URI ''
 
 apply_default REWRITE_HOST ''
+apply_default REWRITE_PROTO $REMOTE_PROTO
 
 apply_default MAX_CACHE_SIZE '10g'
 apply_default CACHE_LOCK_TIMEOUT '10s'
