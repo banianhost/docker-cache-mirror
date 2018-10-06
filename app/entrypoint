@@ -76,6 +76,7 @@ generateTemplate() {
 generateTemplate /app/proxy.conf /etc/nginx/proxy.conf
 generateTemplate /app/default.conf /etc/nginx/sites-enabled/default
 
+touch /etc/nginx/server_extras.conf
 touch /etc/nginx/proxy_extras.conf
 
 envsubst < /app/banner
