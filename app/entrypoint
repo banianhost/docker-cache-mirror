@@ -76,6 +76,8 @@ generateTemplate() {
 generateTemplate /app/proxy.conf /etc/nginx/proxy.conf
 generateTemplate /app/default.conf /etc/nginx/sites-enabled/default
 
+touch /etc/nginx/proxy_extras.conf
+
 envsubst < /app/banner
 
 nginx -g 'daemon off;'

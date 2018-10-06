@@ -39,6 +39,10 @@ docker run -it -p 8080:80 \
     banian/cache-mirror:latest
 ```
 
+## Adding extra proxy configurations
+
+Simply mount your config file to `/etc/nginx/proxy_extras.conf`.
+
 ## Development
 
 Use `./dev.sh` script.
