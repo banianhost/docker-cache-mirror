@@ -22,10 +22,16 @@ apply_default MAX_CLIENT_CONNECTED ''
 apply_default MODE 'cache'
 apply_default LOG_MODE 'std'
 
+apply_default IMAGE ''
+apply_default IMAGE_QUALITY '85'
+apply_default IMAGE_BUFFER '30m'
+apply_default IMAGE_INTERLACE 'on'
+
 # Preserve nginx variables
 for key in \
   server_name upstream_cache_status http_user_agent uri is_args args slice_range \
   remote_addr remote_user time_local request status bytes_sent http_referer http_user_agent \
+  arg_width arg_height arg_quality arg_interlace \
 ; do
   export $key=\$$key
 done
@@ -61,6 +67,10 @@ generateTemplate() {
     sed -i '/sub_filter/d' $template;
   fi
 
+  if [ -z $IMAGE ] ; then
+    sed -i '/image.conf/d' $template;
+  fi
+
   case $MODE in
     cache)
       sed -i '/MODE_STORE/d' $template;
@@ -74,6 +84,7 @@ generateTemplate() {
 }
 
 generateTemplate /app/proxy.conf /etc/nginx/proxy.conf
+generateTemplate /app/image.conf /etc/nginx/image.conf
 generateTemplate /app/default.conf /etc/nginx/sites-enabled/default
 
 touch /etc/nginx/server_extras.conf

@@ -25,6 +25,10 @@ REWRITE_PROTO             | $REMOTE_PROTO| Rewrites all `http://` and  `https://
 MODE                      | cache        | Can be either `cache` or `store`. Store is better for permanent caching.
 SLICE_SIZE                | 10m          | Sets the size of the slice. The zero value disables splitting responses into slices. Note that a too low value may result in excessive memory usage and opening a large number of files.
 LOG_MODE                  | std          | Possible values: `std`, `persist` and `disabled`
+IMAGE                     | (disabled)   | Enable image mode if value set to `on`
+IMAGE_QUALITY             | 85           | Default quality for jpeg and webp images
+IMAGE_BUFFER              | 30M          | Maximum size of the buffer used for reading images
+IMAGE_INTERLACE           | on           | Generate progressive images. Can be set to `off`
 
 ## Simple Usage
 
@@ -42,6 +46,18 @@ docker run -it -p 8080:80 \
 ## Adding extra configurations
 
 Simply mount your config file to `/etc/nginx/proxy_extras.conf` or `/etc/nginx/server_extras.conf`.
+
+## Image Mode
+
+If `IMAGE` environment variable is set, image mode will be enabled.
+
+**IMPORTANT NOTE:** This mode is only supported for `cache` mode (`store` is incompatible)
+
+### Supported Query Params
+
+- `width`
+- `height`
+- `quality`
 
 ## Development
 
